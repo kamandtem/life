@@ -21,7 +21,7 @@ jobs:
         with:
           distribution: temurin
           java-version: '21'
-        - name: Accept Android SDK licenses
+      - name: Accept Android SDK licenses
         run: yes | "$ANDROID_HOME/cmdline-tools/latest/bin/sdkmanager" --licenses > /dev/null || true
       - name: Install dependencies
         run: npm install
