@@ -1,0 +1,42 @@
+{
+  "name": "life-calendar-android",
+  "private": true,
+  "version": "1.1.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite --host 0.0.0.0",
+    "build": "tsc -p tsconfig.app.json --noEmit && vite build",
+    "preview": "vite preview --host 0.0.0.0",
+    "cap:add:android": "cap add android",
+    "cap:sync": "npm run build && cap sync android",
+    "android:debug": "npm run cap:sync && node scripts/setup-android.mjs && cd android && ./gradlew assembleDebug",
+    "android:setup": "node scripts/setup-android.mjs",
+    "typecheck": "tsc -p tsconfig.app.json --noEmit"
+  },
+  "dependencies": {
+    "@capacitor/android": "^7.4.3",
+    "@capacitor/core": "^7.4.3",
+    "@capacitor/filesystem": "^7.1.4",
+    "@capacitor/local-notifications": "^7.0.3",
+    "@capacitor/share": "^7.0.0",
+    "@capacitor/status-bar": "^7.0.3",
+    "@fontsource/vazirmatn": "^5.1.0",
+    "dexie": "^4.0.11",
+    "jalaali-js": "^1.2.8",
+    "lucide-react": "^0.468.0",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1"
+  },
+  "devDependencies": {
+    "@capacitor/cli": "^7.4.3",
+    "@types/jalaali-js": "^1.2.3",
+    "@types/react": "^18.3.18",
+    "@types/react-dom": "^18.3.5",
+    "@vitejs/plugin-react": "^4.3.4",
+    "autoprefixer": "^10.4.20",
+    "postcss": "^8.5.1",
+    "tailwindcss": "^3.4.17",
+    "typescript": "~5.6.3",
+    "vite": "^6.0.7"
+  }
+}

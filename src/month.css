@@ -1,0 +1,62 @@
+/* ===== تقویم ماهانه: عنوان رویدادها داخل خانه‌ها و نوار پیوسته رویدادهای چندروزه ===== */
+.mc-card {
+  /* تقریباً تمام عرض گوشی را می‌گیرد تا عنوان‌ها جای بیشتری داشته باشند */
+  margin: 0 -13px; padding: 8px 3px 6px;
+  background: #fff; border: 1px solid #efedf8; border-radius: 24px; box-shadow: 0 5px 18px #5345a00d;
+}
+.mc { direction: rtl; }
+.mc-head { display: grid; grid-template-columns: repeat(7, minmax(0, 1fr)); column-gap: 3px; padding: 4px 0 7px; }
+.mc-head span { text-align: center; font-size: 10.5px; font-weight: 700; color: #4d4966; white-space: nowrap; }
+.mc-head span.fri { color: #d4534f; }
+.mc-head .short { display: none; }
+@media (max-width: 359px) {
+  .mc-head .full { display: none; }
+  .mc-head .short { display: inline; font-size: 12px; }
+}
+.mc-weeks { display: flex; flex-direction: column; gap: 3px; }
+.mc-week { display: grid; grid-template-columns: repeat(7, minmax(0, 1fr)); column-gap: 3px; row-gap: 2px; min-height: 78px; padding-bottom: 3px; position: relative; }
+
+.mc-cell {
+  grid-row: 1 / -1; min-width: 0; border: 0; border-radius: 12px; background: #f7f6fd; color: #2b2840;
+  padding: 5px 0 0; display: flex; flex-direction: column; align-items: center; justify-content: flex-start; gap: 1px;
+}
+.mc-num { font-size: 15px; font-weight: 800; line-height: 1.25; min-width: 24px; height: 24px; display: grid; place-items: center; }
+.mc-greg { font-size: 9px; color: #a29eb5; line-height: 1.1; }
+.mc-cell.fri .mc-num { color: #d4534f; }
+.mc-cell.out { background: #fbfbfe; }
+.mc-cell.out .mc-num { color: #bdb9cc; font-weight: 600; }
+.mc-cell.out .mc-greg { color: #cfcbdc; }
+.mc-cell.today { background: #efecff; box-shadow: inset 0 0 0 1.5px #b3a9f3; }
+.mc-cell.today .mc-num { background: var(--purple); color: #fff; border-radius: 50%; font-size: 13px; box-shadow: 0 3px 8px #7165d255; }
+.mc-cell.sel { box-shadow: inset 0 0 0 2px #8a7de6; }
+.mc-cell:active { filter: brightness(.96); }
+
+/* رویدادها روی ستون‌ها قرار می‌گیرند اما لمس را به خانه روز زیرشان می‌دهند */
+.mc-ev { align-self: start; margin: 1px 1.5px; z-index: 1; pointer-events: none; min-width: 0; font-size: 10.5px; line-height: 1.38; }
+.mc-t { display: block; overflow-wrap: anywhere; word-break: break-word; }
+
+/* رویداد یک‌روزه: نوار رنگی باریک در لبه + پس‌زمینه ملایم */
+.mc-ev.dot { background: var(--bg); color: #2a2640; font-weight: 600; padding: 2px 3px 2px 2px; border-radius: 6px; border-right: 2.5px solid var(--c); }
+.mc-ev.dot .mc-t { display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; }
+
+/* رویداد چندروزه: نوار توپر پیوسته با متن سفید */
+.mc-ev.bar { background: var(--c); color: #fff; font-weight: 700; padding: 3px 6px; border-radius: 8px; box-shadow: 0 2px 5px #00000014; }
+.mc-ev.bar .mc-t { display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; text-align: center; }
+.mc-ev.bar.wide .mc-t { -webkit-line-clamp: 1; white-space: nowrap; text-overflow: ellipsis; display: block; overflow: hidden; }
+/* ادامه از هفته قبل یا تا هفته بعد: گوشه‌های آن سمت صاف می‌شود */
+.mc-ev.cs { border-top-right-radius: 0; border-bottom-right-radius: 0; margin-right: 0; }
+.mc-ev.ce { border-top-left-radius: 0; border-bottom-left-radius: 0; margin-left: 0; }
+.mc-ev.bar.cs { padding-right: 8px; }
+.mc-ev.bar.ce { padding-left: 8px; }
+
+.mc-more { align-self: start; justify-self: stretch; margin: 2px 2px 0; z-index: 1; pointer-events: none; text-align: center; font-size: 9.5px; font-weight: 800; line-height: 1.35; color: #5f53c4; background: #e8e4ff; border-radius: 6px; padding: 2px 2px; }
+
+/* برگه جزئیات روز */
+.sheet-backdrop { z-index: 20; }
+.sheet { max-height: 88%; }
+
+/* گوشی‌های بسیار کوچک: متن کمی کوچک‌تر تا کلمه‌ها نشکنند */
+@media (max-width: 350px) {
+  .mc-ev { font-size: 9.5px; }
+  .mc-greg { font-size: 8px; }
+}
